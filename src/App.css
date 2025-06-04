@@ -1,5 +1,152 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap&family=Poppins:wght@400;500;600;700&display=swap&family=Roboto:wght@400;500;700&display=swap');
+
 #root {
   /* Remove conflicting styles to let Bootstrap handle layout */
+}
+
+/* Cerana Brand Colors */
+:root {
+  --brand-rich-charcoal: #3c3730;
+  --brand-dark-resin: #332d02;
+  --brand-warm-honey-gold: #bf9237;
+  --brand-soft-ivory: #ede8e2;
+  --brand-garden-green: #65775a;
+  --brand-muted-navy: #525b74;
+  --brand-clay-orange: #b46233;
+}
+
+/* Typography */
+.brand-heading {
+  font-family: 'Poppins', serif;
+  color: var(--brand-rich-charcoal);
+}
+
+.brand-body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--brand-dark-resin);
+}
+
+/* Custom styles for brand design */
+.min-vh-75 {
+  min-height: 75vh;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom button styles */
+.btn-brand-primary {
+  background-color: var(--brand-clay-orange);
+  border-color: var(--brand-clay-orange);
+  color: white;
+  font-weight: 500;
+}
+
+.btn-brand-primary:hover {
+  background-color: var(--brand-dark-resin);
+  border-color: var(--brand-dark-resin);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 119, 90, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-brand-secondary {
+  background-color: transparent;
+  border-color: var(--brand-dark-resin);
+  color: var(--brand-dark-resin);
+  font-weight: 500;
+}
+
+.btn-brand-secondary:hover {
+  background-color: var(--brand-clay-orange);
+  border-color: var(--brand-clay-orange);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 119, 90, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Brand background */
+.brand-bg-ivory {
+  background-color: var(--brand-soft-ivory);
+}
+
+.brand-bg-gradient {
+  background: linear-gradient(135deg, var(--brand-soft-ivory) 0%, #f8f9fa 100%);
+}
+
+/* Card hover effects */
+.shadow-sm:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(47, 47, 47, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+/* Accordion custom styles */
+.accordion-button:not(.collapsed) {
+  background-color: var(--brand-soft-ivory);
+  border-color: var(--brand-warm-honey-gold);
+  color: var(--brand-rich-charcoal);
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(222, 176, 86, 0.25);
+}
+
+/* Navigation link hover effects */
+.nav-link:hover {
+  color: var(--brand-warm-honey-gold) !important;
+  transition: color 0.3s ease;
+}
+
+/* Brand accent colors */
+.text-brand-gold {
+  color: var(--brand-warm-honey-gold) !important;
+}
+
+.text-brand-green {
+  color: var(--brand-garden-green) !important;
+}
+
+.text-brand-navy {
+  color: var(--brand-muted-navy) !important;
+}
+
+.text-brand-orange {
+  color: var(--brand-clay-orange) !important;
+}
+
+.text-brand-resin {
+  color: var(--brand-dark-resin) !important;
+}
+
+.bg-brand-gold {
+  background-color: var(--brand-warm-honey-gold) !important;
+}
+
+.border-brand-gold {
+  border-color: var(--brand-warm-honey-gold) !important;
+}
+
+/* Custom spacing utilities */
+.py-6 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+/* Badge styling */
+.badge {
+  font-weight: 500;
+}
+
+/* Image hover effects */
+.img-fluid:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 .logo {
