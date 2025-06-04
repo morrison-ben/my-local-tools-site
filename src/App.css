@@ -3,6 +3,8 @@
 
 #root {
   /* Remove conflicting styles to let Bootstrap handle layout */
+  margin: 0;
+  padding: 0;
 }
 
 /* Cerana Brand Colors */
@@ -193,6 +195,27 @@ html {
   color: #888;
 }
 
+/* Waitlist Form Styles */
+.form-control.is-invalid {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+.form-control:focus {
+  border-color: var(--brand-clay-orange);
+  box-shadow: 0 0 0 0.2rem rgba(180, 98, 51, 0.25);
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
 /* Scroll Animation Base Classes */
 .animate-on-scroll {
   opacity: 0;
@@ -218,6 +241,7 @@ html {
 
 .fade-in {
   /* Only opacity changes, no translation */
+  transform: none;
 }
 
 /* Active State - Applied when element is visible */

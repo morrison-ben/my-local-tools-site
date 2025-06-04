@@ -8,8 +8,99 @@ import ceranaCoolPic from './assets/cerana_cool_pic.png';
 export default function LandingPage() {
   const [activeAccordion, setActiveAccordion] = useState(null);
 
+  // Waitlist form state management
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // null, 'success', 'error'
+  const [errorMessage, setErrorMessage] = useState('');
+
   const toggleAccordion = (index) => {
     setActiveAccordion(activeAccordion === index ? null : index);
+  };
+
+  // Email validation function
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // Form submission handler
+  const handleWaitlistSubmit = async (e) => {
+    e.preventDefault();
+
+    // Reset states
+    setSubmitStatus(null);
+    setErrorMessage('');
+
+    // Validate email
+    if (!email.trim()) {
+      setSubmitStatus('error');
+      setErrorMessage('Please enter your email address');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      setSubmitStatus('error');
+      setErrorMessage('Please enter a valid email address');
+      return;
+    }
+
+    // Submit to Google Apps Script Web App
+    setIsSubmitting(true);
+
+    try {
+      console.log('Submitting email:', email);
+
+      // Try fetch first
+      const response = await fetch('https://script.google.com/macros/s/AKfycbztn0b8x6vQKy4Xv5xN5PPO4NKddmgwdzh78xClpyJXNQS6QtsEO7xCEktxUxTtpxPw4A/exec', {
+        redirect: "follow",
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          email,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (!data.success) {
+        throw new Error(data.message || 'Failed to join waitlist');
+      }
+
+      // Success
+      setSubmitStatus('success');
+      setEmail('');
+    } catch (error) {
+      console.error('Fetch error:', error);
+      console.error('Error type:', typeof error);
+      console.error('Error name:', error.name);
+      console.error('Error message:', error.message);
+
+      setSubmitStatus('error');
+
+      // Provide more specific error messages
+      if (error.name === 'TypeError' && (error.message.includes('fetch') || error.message.includes('Failed to fetch'))) {
+        setErrorMessage('Network error. Please check your internet connection and try again.');
+      } else if (error.message.includes('CORS') || error.message.includes('cors')) {
+        setErrorMessage('Security error. Please try again or contact support.');
+      } else if (error.message.includes('HTTP error')) {
+        setErrorMessage(`Server error (${error.message}). Please try again later.`);
+      } else {
+        setErrorMessage(error.message || 'Something went wrong. Please try again.');
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Scroll Animation Setup
@@ -84,17 +175,39 @@ export default function LandingPage() {
               <p className="lead mb-4 fs-5 brand-body">
                 Being a small business owner is difficult. We're here to help.
               </p>
-              <div className="d-flex flex-column gap-3 mb-4">
+              <form onSubmit={handleWaitlistSubmit} className="d-flex flex-column gap-3 mb-4">
                 <div className="input-group">
                   <input
                     type="email"
-                    className="form-control form-control-lg py-3"
+                    className={`form-control form-control-lg py-3 ${submitStatus === 'error' ? 'is-invalid' : ''}`}
                     placeholder="Enter your email address"
                     aria-label="Email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isSubmitting}
                   />
+                  <button
+                    className="btn btn-brand-primary btn-lg px-4"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                        Processing...
+                      </>
+                    ) : 'Join the Waitlist'}
+                  </button>
                 </div>
-                <button className="btn btn-brand-primary btn-lg px-4 py-3">Join the Waitlist</button>
-              </div>
+
+                {submitStatus === 'error' && (
+                  <div className="text-danger small">{errorMessage}</div>
+                )}
+
+                {submitStatus === 'success' && (
+                  <div className="text-success small">Thank you! You've been added to our waitlist.</div>
+                )}
+              </form>
             </div>
             <div className="col-lg-6 ps-lg-4">
               <div className="text-center">
