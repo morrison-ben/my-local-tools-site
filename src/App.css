@@ -76,7 +76,15 @@ html {
 }
 
 .brand-bg-gradient {
-  background: linear-gradient(135deg, var(--brand-soft-ivory) 0%, #f8f9fa 100%);
+  background: linear-gradient(180deg, var(--brand-soft-ivory) 0%, #f8f9fa 100%);
+}
+
+.brand-bg-gradient-to-navy {
+  background: linear-gradient(180deg, var(--brand-soft-ivory) 0%, var(--brand-soft-ivory) 70%, var(--brand-muted-navy) 100%);
+}
+
+.brand-bg-gradient-secondary {
+  background: linear-gradient(180deg, var(--brand-muted-navy) 0%, var(--brand-muted-navy) 30%, var(--brand-soft-ivory) 100%);
 }
 
 /* Card hover effects */
@@ -183,4 +191,55 @@ html {
 
 .read-the-docs {
   color: #888;
+}
+
+/* Scroll Animation Base Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Animation Variations */
+.slide-in-left {
+  transform: translateX(-50px);
+}
+
+.slide-in-right {
+  transform: translateX(50px);
+}
+
+.slide-in-up {
+  transform: translateY(50px);
+}
+
+.slide-in-down {
+  transform: translateY(-50px);
+}
+
+.fade-in {
+  /* Only opacity changes, no translation */
+}
+
+/* Active State - Applied when element is visible */
+.animate-active {
+  opacity: 1;
+  transform: translate(0);
+}
+
+/* Optional: Animation Delay Classes */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Responsive Considerations */
+@media (max-width: 768px) {
+  .slide-in-left, .slide-in-right {
+    transform: translateX(0); /* Disable horizontal slide on mobile */
+  }
+
+  .slide-in-up, .slide-in-down {
+    transform: translateY(25px); /* Reduce vertical slide distance */
+  }
 }

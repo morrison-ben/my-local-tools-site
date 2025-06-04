@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import storefrontImage from './assets/storefront_no_bg.png';
+import ceranaLogo from './assets/cerana_logo.png';
+import ceranaCoolPic from './assets/cerana_cool_pic.png';
 
 export default function LandingPage() {
   const [activeAccordion, setActiveAccordion] = useState(null);
@@ -10,13 +12,49 @@ export default function LandingPage() {
     setActiveAccordion(activeAccordion === index ? null : index);
   };
 
+  // Scroll Animation Setup
+  useEffect(() => {
+    // Configure the Intersection Observer
+    const observerOptions = {
+      root: null, // Use viewport as root
+      rootMargin: '0px', // No margin
+      threshold: 0.15 // Trigger when 15% of element is visible
+    };
+
+    // Create observer instance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Add active class when element is visible
+          entry.target.classList.add('animate-active');
+          // Optionally unobserve after animation is triggered
+          // observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Select all elements with animation classes
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+    // Add a small delay before starting to observe elements
+    setTimeout(() => {
+      animatedElements.forEach(el => observer.observe(el));
+    }, 100);
+
+    // Clean up observer on component unmount
+    return () => {
+      animatedElements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
+
   return (
-    <div className="bg-white text-dark">
+    <div className="brand-bg-gradient text-dark">
       {/* Navbar */}
       <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top border-bottom">
         <div className="container">
-          <a className="navbar-brand fw-bold fs-4 text-brand-gold brand-heading" href="#">
-            🍯 Cerana
+          <a className="navbar-brand fw-bold fs-3 text-brand-gold brand-heading d-flex align-items-center" href="#">
+            <img src={ceranaLogo} alt="Cerana Logo" style={{height: '32px', marginRight: '8px'}} />
+            Cerana
           </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span className="navbar-toggler-icon"></span>
@@ -34,14 +72,11 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero */}
-      <header className="py-5 brand-bg-gradient">
+      <header className="py-5 animate-on-scroll fade-in">
         <div className="container">
           <div className="row align-items-center g-5" style={{minHeight: '75vh'}}>
             <div className="col-lg-6 pe-lg-4">
               <div className="mb-3">
-                <span className="badge bg-brand-gold text-white px-3 py-2 rounded-pill">
-                  55,000+ trusted Businesses
-                </span>
               </div>
               <h1 className="display-3 fw-bold mb-4 lh-1 brand-heading">
                 Focus on what matters
@@ -50,12 +85,15 @@ export default function LandingPage() {
                 Being a small business owner is difficult. We're here to help.
               </p>
               <div className="d-flex flex-column gap-3 mb-4">
+                <div className="input-group">
+                  <input
+                    type="email"
+                    className="form-control form-control-lg py-3"
+                    placeholder="Enter your email address"
+                    aria-label="Email address"
+                  />
+                </div>
                 <button className="btn btn-brand-primary btn-lg px-4 py-3">Join the Waitlist</button>
-                <button className="btn btn-brand-primary btn-lg px-4 py-3">Book a Call</button>
-              </div>
-              <div className="small brand-body">
-                <div>*No long-term commitment, cancel anytime.*</div>
-                <div>*Quick setup, seamless integration with your current tools.*</div>
               </div>
             </div>
             <div className="col-lg-6 ps-lg-4">
@@ -72,15 +110,57 @@ export default function LandingPage() {
         </div>
       </header>
 
+      {/* Product Showcase Section */}
+      <section className="py-5 animate-on-scroll slide-in-left" style={{
+        minHeight: '600px'
+      }}>
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="text-white">
+                <h2 className="display-4 fw-bold mb-4 text-brand-resin">
+                  Automate workflows <span className="text-brand-gold">mindfully</span>
+                </h2>
+                <p className="lead text-brand-resin opacity-75 mb-4">
+                  We help you streamline repetitive tasks in a way that works for your business.
+                </p>
+                <p className="text-brand-resin opacity-75 mb-4">
+                  It all starts with a one on one consultation, where we learn about your business, the challenges you face, and the toolset you currently use. From there, we can pick and choose the tools and workflows that fit your use case perfectly.
+                </p>
+                <div className="d-flex flex-column gap-4 mb-4 align-items-start">
+                  <button className="btn btn-brand-primary btn-lg px-4 py-3 align-self-start" style={{width: "90%"}}>
+                    Book a Call
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="text-center">
+                <img
+                  src={ceranaCoolPic}
+                  alt="Cerana Automation Platform"
+                  className="img-fluid"
+                  style={{
+                    maxHeight: '500px',
+                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
+                    transform: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
-      <section className="py-5" id="benefits">
+      <section className="py-5 animate-on-scroll slide-in-up" id="benefits">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="text-brand-resin text-uppercase display-5 fw-bold mb-3 brand-heading">The Cerana Difference</h2>
           </div>
           
           <div className="row g-4">
-            <div className="col-lg-4">
+            <div className="col-lg-4 animate-on-scroll slide-in-up delay-100">
               <div className="text-center h-100">
                 <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
                   <span className="fs-2">⏱</span>
@@ -89,7 +169,7 @@ export default function LandingPage() {
                 <p className="brand-body">Automate your time-consuming tasks and free up work hours for you and your employees.</p>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 animate-on-scroll slide-in-up delay-300">
               <div className="text-center h-100">
                 <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
                   <span className="fs-2">➡</span>
@@ -98,7 +178,7 @@ export default function LandingPage() {
                 <p className="brand-body">Quiet and smooth integrations that co-exist with your current system. No need to reinvent the wheel.</p>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 animate-on-scroll slide-in-up delay-500">
               <div className="text-center h-100">
                 <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
                   <span className="fs-2">⚡</span>
@@ -170,78 +250,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Benefits Grid */}
-      <section className="py-5 brand-bg-ivory">
-        <div className="container">
-          <div className="text-center mb-5">
-            <p className="text-brand-gold text-uppercase fw-bold small mb-2">BENEFITS</p>
-            <h2 className="display-5 fw-bold mb-3 brand-heading">Why We Shine?</h2>
-            <p className="lead brand-body">
-              Leverage the power of AI to automatically handle time-consuming tasks, giving you hours back each week to focus on growing your business.
-            </p>
-          </div>
-          
-          <div className="row g-4">
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">⚡</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Instant Time Recovery</h5>
-                <p className="brand-body small">Get immediate time back on every process, powered by AI to handle repetitive tasks in real-time. No setup required, just seamless automation.</p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">📈</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Background Integration</h5>
-                <p className="brand-body small">Works quietly behind the scenes with your existing tools and workflows. No disruption to your current processes, just more time in your day.</p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">🔧</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Zero Learning Curve</h5>
-                <p className="brand-body small">Start saving time immediately without training or complex setup. Our intuitive system works with how you already operate your business.</p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">🔒</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Secure Operations</h5>
-                <p className="brand-body small">Every operation is protected with the latest encryption technology, ensuring your business is always secure and your data safe.</p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">🎯</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Adaptive Features</h5>
-                <p className="brand-body small">Enjoy automatic adjustments to your automations and plans, tailored to match your business's operational patterns and goals.</p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="text-brand-gold mb-3">
-                  <span className="fs-1">🎧</span>
-                </div>
-                <h5 className="fw-bold mb-3 brand-heading">Dedicated Support</h5>
-                <p className="brand-body small">Access personalized assistance whenever you need it from our expert support team, helping you make the most of your benefits.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Process Section */}
-      <section className="py-5" id="process">
+      <section className="py-5 animate-on-scroll slide-in-right" id="process">
         <div className="container">
           <div className="text-center mb-5">
             <p className="text-success text-uppercase fw-bold small mb-2">PROCESS</p>
@@ -252,7 +262,7 @@ export default function LandingPage() {
           </div>
 
           <div className="row g-4">
-            <div className="col-md-6 col-lg-3">
+            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-100">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">01</span>
@@ -265,7 +275,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3">
+            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-200">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">02</span>
@@ -278,7 +288,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3">
+            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-300">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">03</span>
@@ -291,7 +301,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3">
+            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-400">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">04</span>
@@ -308,224 +318,14 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Product Sections */}
-      <section className="py-5 bg-light" id="product">
-        <div className="container">
-          <div className="row align-items-center mb-5">
-            <div className="col-lg-6">
-              <p className="text-success text-uppercase fw-bold small mb-2">Product</p>
-              <h2 className="display-5 fw-bold mb-3">AI-Driven Automation</h2>
-              <p className="lead text-muted mb-4">
-                Save more time on every process with AI-powered optimization that ensures you get the best possible value for your business, automatically.
-              </p>
-              <button className="btn btn-success btn-lg px-4">Get Started</button>
-            </div>
-            <div className="col-lg-6">
-              <img
-                src="https://via.placeholder.com/500x300/22c55e/ffffff?text=AI+Dashboard"
-                alt="AI Dashboard"
-                className="img-fluid rounded-3 shadow"
-              />
-            </div>
-          </div>
 
-          <div className="row align-items-center mb-5">
-            <div className="col-lg-6 order-lg-2">
-              <p className="text-success text-uppercase fw-bold small mb-2">Product</p>
-              <h2 className="display-5 fw-bold mb-3">Real-Time Insights</h2>
-              <p className="lead text-muted mb-4">
-                Track your operations with detailed analytics and real-time updates, giving you full transparency and control over every process.
-              </p>
-              <button className="btn btn-success btn-lg px-4">Get Started</button>
-            </div>
-            <div className="col-lg-6 order-lg-1">
-              <img
-                src="https://via.placeholder.com/500x300/22c55e/ffffff?text=Analytics+Dashboard"
-                alt="Analytics Dashboard"
-                className="img-fluid rounded-3 shadow"
-              />
-            </div>
-          </div>
 
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <p className="text-success text-uppercase fw-bold small mb-2">Product</p>
-              <h2 className="display-5 fw-bold mb-3">Customizable Plans</h2>
-              <p className="lead text-muted mb-4">
-                Choose flexible plans designed to grow with your business, offering personalized options that adapt to meet your unique needs.
-              </p>
-              <button className="btn btn-success btn-lg px-4">Get Started</button>
-            </div>
-            <div className="col-lg-6">
-              <img
-                src="https://via.placeholder.com/500x300/22c55e/ffffff?text=Custom+Plans"
-                alt="Custom Plans"
-                className="img-fluid rounded-3 shadow"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Pricing Section */}
-      <section className="py-5" id="pricing">
-        <div className="container">
-          <div className="text-center mb-5">
-            <p className="text-success text-uppercase fw-bold small mb-2">PRICING</p>
-            <h2 className="display-5 fw-bold mb-3">Choose the Perfect Plan</h2>
-            <p className="lead text-muted">
-              We offer flexible pricing plans that align with where your business stands today and where it's headed.
-            </p>
-          </div>
 
-          <div className="row g-4">
-            <div className="col-lg-4">
-              <div className="bg-white border rounded-3 p-4 h-100 shadow-sm">
-                <h5 className="fw-bold mb-3">Starter Plan</h5>
-                <div className="mb-3">
-                  <span className="display-6 fw-bold">$99</span>
-                  <span className="text-muted">/month</span>
-                </div>
-                <p className="text-muted mb-4">Ideal for small businesses looking to streamline operations and boost efficiency effortlessly.</p>
-                <ul className="list-unstyled mb-4">
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Core AI-powered automation features</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Real-time operational insights</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Basic customer support via email</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Access to standard reporting tools</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Monthly plan adjustments</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>No long-term commitments</li>
-                </ul>
-                <button className="btn btn-outline-success w-100 mb-3">Get Started</button>
-                <p className="small text-muted text-center">*No commitment – cancel anytime*</p>
-              </div>
-            </div>
 
-            <div className="col-lg-4">
-              <div className="bg-success text-white rounded-3 p-4 h-100 shadow position-relative">
-                <div className="position-absolute top-0 start-50 translate-middle">
-                  <span className="badge bg-warning text-dark px-3 py-1">MOST POPULAR</span>
-                </div>
-                <h5 className="fw-bold mb-3 mt-3">Pro Plan</h5>
-                <div className="mb-3">
-                  <span className="display-6 fw-bold">$199</span>
-                  <span className="opacity-75">/month</span>
-                </div>
-                <p className="opacity-75 mb-4">Designed for growing teams that need advanced tools to maximize value and performance.</p>
-                <ul className="list-unstyled mb-4">
-                  <li className="mb-2"><span className="me-2">✓</span>Advanced AI optimization</li>
-                  <li className="mb-2"><span className="me-2">✓</span>Detailed analytics</li>
-                  <li className="mb-2"><span className="me-2">✓</span>Priority support via chat and email</li>
-                  <li className="mb-2"><span className="me-2">✓</span>Flexible, customizable plan options</li>
-                  <li className="mb-2"><span className="me-2">✓</span>Multi-user access for teams</li>
-                  <li className="mb-2"><span className="me-2">✓</span>Monthly performance reviews</li>
-                </ul>
-                <button className="btn btn-light w-100 mb-3 text-success fw-bold">Get Started</button>
-                <p className="small opacity-75 text-center">*No commitment – cancel anytime*</p>
-              </div>
-            </div>
-
-            <div className="col-lg-4">
-              <div className="bg-white border rounded-3 p-4 h-100 shadow-sm">
-                <h5 className="fw-bold mb-3">Enterprise Plan</h5>
-                <div className="mb-3">
-                  <span className="display-6 fw-bold">$299</span>
-                  <span className="text-muted">/month</span>
-                </div>
-                <p className="text-muted mb-4">Perfect for large organizations seeking tailored solutions with dedicated support and features.</p>
-                <ul className="list-unstyled mb-4">
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Tailored solutions for large-scale</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Dedicated account manager</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Full access to all premium features</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Enterprise-level security</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>Customized analytics dashboards</li>
-                  <li className="mb-2"><span className="text-success me-2">✓</span>24/7 priority customer support</li>
-                </ul>
-                <button className="btn btn-outline-success w-100 mb-3">Get Started</button>
-                <p className="small text-muted text-center">*No commitment – cancel anytime*</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center mt-5">
-            <div className="row justify-content-center">
-              <div className="col-md-8">
-                <div className="d-flex justify-content-center align-items-center gap-4 mb-4">
-                  <span className="text-success">✓ 100% Safe Purchase</span>
-                  <span className="text-success">✓ 7-Day Money Back Guarantee</span>
-                  <span className="text-success">✓ Delivery In &lt;24h</span>
-                </div>
-                <h5 className="fw-bold mb-3">Not sure if we're a fit?</h5>
-                <p className="text-muted mb-3">Let's setup a 15 minute call to figure out if we can help you.</p>
-                <button className="btn btn-outline-success btn-lg">Schedule A Call</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-5 bg-light" id="reviews">
-        <div className="container">
-          <div className="text-center mb-5">
-            <p className="text-success text-uppercase fw-bold small mb-2">REVIEWS</p>
-            <h2 className="display-5 fw-bold mb-3">Our Valued Clients</h2>
-            <p className="lead text-muted">
-              We're here to help you make the right decision. See what our clients say about their experience.
-            </p>
-          </div>
-
-          <div className="row g-4">
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="mb-3">
-                  <span className="text-warning">★★★★★</span>
-                </div>
-                <p className="mb-3">"A fantastic tool! It saved us time and money beyond expectations."</p>
-                <div className="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/50x50/22c55e/ffffff?text=B" alt="Brendan" className="rounded-circle me-3" />
-                  <div>
-                    <div className="fw-bold">Brendan</div>
-                    <div className="small text-muted">Owner of TechCorp</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="mb-3">
-                  <span className="text-warning">★★★★★</span>
-                </div>
-                <p className="mb-3">"An absolute must-have! The intuitive features, real-time insights, and seamless performance have greatly improved our operations."</p>
-                <div className="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/50x50/22c55e/ffffff?text=W" alt="Wilson" className="rounded-circle me-3" />
-                  <div>
-                    <div className="fw-bold">Wilson</div>
-                    <div className="small text-muted">Owner of DataFlow</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4">
-              <div className="bg-white p-4 rounded-3 shadow-sm h-100">
-                <div className="mb-3">
-                  <span className="text-warning">★★★★★</span>
-                </div>
-                <p className="mb-3">"Incredible tool! It helped us save time and resources while improving efficiency."</p>
-                <div className="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/50x50/22c55e/ffffff?text=M" alt="Maya" className="rounded-circle me-3" />
-                  <div>
-                    <div className="fw-bold">Maya</div>
-                    <div className="small text-muted">Owner of SmartSolutions</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
-      <section className="py-5">
+      <section className="py-5 animate-on-scroll fade-in">
         <div className="container">
           <div className="text-center mb-5">
             <p className="text-success text-uppercase fw-bold small mb-2">FAQ'S</p>
@@ -629,7 +429,7 @@ export default function LandingPage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-5" style={{background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)'}}>
+      <section className="py-5 animate-on-scroll slide-in-up" style={{background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)'}}>
         <div className="container">
           <div className="text-center">
             <p className="text-success text-uppercase fw-bold small mb-2">KEY TAKEAWAYS</p>
@@ -637,7 +437,7 @@ export default function LandingPage() {
             <p className="lead text-muted mb-4">
               Reclaim hours each week with smart automation that handles repetitive tasks seamlessly, giving you time to focus on what truly matters.
             </p>
-            <button className="btn btn-success btn-lg px-5 py-3 mb-4">Join the Waitlist</button>
+
 
             <div className="row justify-content-center mt-4">
               <div className="col-md-8">
@@ -660,8 +460,9 @@ export default function LandingPage() {
           <div className="row">
             <div className="col-lg-6">
               <div className="mb-4">
-                <a className="navbar-brand fw-bold fs-4 text-brand-gold text-decoration-none brand-heading" href="#">
-                  🍯 Cerana
+                <a className="navbar-brand fw-bold fs-4 text-brand-gold text-decoration-none brand-heading d-flex align-items-center" href="#">
+                  <img src={ceranaLogo} alt="Cerana Logo" style={{height: '32px', marginRight: '8px'}} />
+                  Cerana
                 </a>
               </div>
               <h4 className="fw-bold mb-3 text-white">Start Saving Time and Streamlining Your Business Today.</h4>
