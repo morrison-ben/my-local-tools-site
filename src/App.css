@@ -18,6 +18,17 @@
   --brand-clay-orange: #b46233;
 }
 
+section {
+  scroll-margin-top: 60px;
+}
+
+/* .anchor {
+  display: block;
+  position: relative;
+  top: -60px;
+  visibility: hidden;
+} */
+
 /* Typography */
 .brand-heading {
   font-family: 'Poppins', serif;
@@ -143,12 +154,6 @@ html {
 }
 
 /* Custom spacing utilities */
-
-.py-5 {
-  padding-top: 6rem !important;
-  padding-bottom: 6rem !important;
-}
-
 .py-6 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -157,6 +162,10 @@ html {
 /* Badge styling */
 .badge {
   font-weight: 500;
+}
+
+.mb-approach {
+  margin-bottom: 4rem;
 }
 
 /* Image hover effects */

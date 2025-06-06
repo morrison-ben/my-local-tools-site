@@ -191,7 +191,7 @@ export default function LandingPage() {
       </header>
 
       {/* The Cerana Difference */}
-      <section className="py-5" id="benefits">
+      <section className="py-5" id="benefits" scroll-margin-top="200px">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="text-brand-resin display-5 fw-bold mb-3 brand-heading">The Cerana Difference</h2>
@@ -331,65 +331,61 @@ export default function LandingPage() {
       </section>
 
       {/* Process Section */}
-      <section className="py-5" id="process">
+      <section className="py-6" id="process">
         <div className="container">
-          <div className="text-center mb-5">
-            <h2 className="display-5 fw-bold mb-3 text-brand-resin">Our Approach</h2>
-            <p className="lead text-muted">
-              Our streamlined process ensures quick, efficient results, from setup to completion. Enjoy clear steps and full transparency at every stage.
-            </p>
+          <div className="text-center mb-approach">
+            <h2 className="display-5 fw-bold mb-3 text-brand-resin brand-heading">Our Approach</h2>
           </div>
-
           <div className="row g-4">
             <div className="col-md-6 col-lg-3">
               <div className="text-center">
-                <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
+                <div className="bg-brand-gold text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">01</span>
                 </div>
-                <h5 className="fw-bold mb-3">Simplified Onboarding</h5>
+                <h5 className="fw-bold mb-3">Discover</h5>
                 <ul className="list-unstyled text-muted small">
-                  <li className="mb-2">• Quick and easy setup for immediate use.</li>
-                  <li className="mb-2">• Step-by-step guidance for smooth integration.</li>
-                  <li className="mb-2">• No technical expertise required to get started.</li>
+                  <li className="mb-2">• One-on-one consultation</li>
+                  <li className="mb-2">• Prioritize learning over selling</li>
+                  <li className="mb-2">• Find out what’s slowing you down the most </li>
                 </ul>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="text-center">
-                <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
+                <div className="bg-brand-gold text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">02</span>
                 </div>
-                <h5 className="fw-bold mb-3">AI-Powered Efficiency</h5>
+                <h5 className="fw-bold mb-3">Plan</h5>
                 <ul className="list-unstyled text-muted small">
-                  <li className="mb-2">• Automatic optimization on every operation.</li>
-                  <li className="mb-2">• Real-time analytics to track performance.</li>
-                  <li className="mb-2">• Seamless adjustments to maximize efficiency.</li>
+                  <li className="mb-2">• Prioritize simple wins</li>
+                  <li className="mb-2">• Align on vision going forward</li>
+                  <li className="mb-2">• Fine tune / make adjustments where needed </li>
                 </ul>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="text-center">
-                <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
+                <div className="bg-brand-gold text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">03</span>
                 </div>
-                <h5 className="fw-bold mb-3">Transparent Communication</h5>
+                <h5 className="fw-bold mb-3">Build</h5>
                 <ul className="list-unstyled text-muted small">
-                  <li className="mb-2">• Regular updates on progress and changes.</li>
-                  <li className="mb-2">• Clear terms and no hidden fees.</li>
-                  <li className="mb-2">• Dedicated support available at all stages.</li>
+                  <li className="mb-2">• MVP to address your biggest pain point</li>
+                  <li className="mb-2">• Minimal learning curve / ramp-up</li>
+                  <li className="mb-2">• Regular updates on progress and changes</li>
                 </ul>
               </div>
             </div>
             <div className="col-md-6 col-lg-3">
               <div className="text-center">
-                <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
+                <div className="bg-brand-gold text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">04</span>
                 </div>
-                <h5 className="fw-bold mb-3">Flexible Solutions</h5>
+                <h5 className="fw-bold mb-3">Scale</h5>
                 <ul className="list-unstyled text-muted small">
-                  <li className="mb-2">• Customizable plans based on your needs.</li>
-                  <li className="mb-2">• Monthly adjustments to suit business changes.</li>
-                  <li className="mb-2">• Freedom to upgrade or adjust anytime.</li>
+                  <li className="mb-2">• Ongoing feedback sessions</li>
+                  <li className="mb-2">• Easy-to-use dashboard for metric tracking</li>
+                  <li className="mb-2">• Freedom to upgrade or add automations</li>
                 </ul>
               </div>
             </div>
@@ -407,8 +403,7 @@ export default function LandingPage() {
       <section className="py-5">
         <div className="container">
           <div className="text-center mb-5">
-            <p className="text-success text-uppercase fw-bold small mb-2">FAQ'S</p>
-            <h2 className="display-5 fw-bold mb-3">Got a quick question?</h2>
+            <h2 className="display-5 fw-bold mb-3 text-brand-resin brand-heading">Got a quick question?</h2>
             <p className="lead text-muted">
               We're here to help you make the right decision. Explore our frequently asked questions and find answers below.
             </p>
@@ -424,12 +419,12 @@ export default function LandingPage() {
                       type="button"
                       onClick={() => toggleAccordion(0)}
                     >
-                      How does the platform ensure data accuracy?
+                      Do I need to be technical to use this?
                     </button>
                   </h2>
                   <div className={`accordion-collapse collapse ${activeAccordion === 0 ? 'show' : ''}`}>
                     <div className="accordion-body bg-light rounded-3 mt-2">
-                      Our system uses advanced AI verification and triple-checks every data point to guarantee accuracy, ensuring reliable and verified information.
+                      Not at all - we will walk you through anything you need to do on your end in terms of setup. Aside from inputting your credentials to enable access to certain tools, we won't really require anything else from you.
                     </div>
                   </div>
                 </div>
@@ -441,12 +436,12 @@ export default function LandingPage() {
                       type="button"
                       onClick={() => toggleAccordion(1)}
                     >
-                      Can I integrate this platform with other tools?
+                      Will this replace the systems I already use?
                     </button>
                   </h2>
                   <div className={`accordion-collapse collapse ${activeAccordion === 1 ? 'show' : ''}`}>
                     <div className="accordion-body bg-light rounded-3 mt-2">
-                      Yes, our platform offers seamless integration with most popular business tools and software through our API and built-in connectors.
+                      The goal is to help smooth out parts of your current workflow, not force you to start over. We focus on tools that complement what already works for you. If you do want a complete overhaul of your system we can do that as well, but generally we are looking to integrate - not replace.
                     </div>
                   </div>
                 </div>
@@ -463,7 +458,7 @@ export default function LandingPage() {
                   </h2>
                   <div className={`accordion-collapse collapse ${activeAccordion === 2 ? 'show' : ''}`}>
                     <div className="accordion-body bg-light rounded-3 mt-2">
-                      You can get started in less than 24 hours. Our streamlined onboarding process ensures quick setup with step-by-step guidance.
+                      Once we devise a plan for your use case, you can expect to be up and running within a couple of days. Our streamlined onboarding process ensures quick setup with step-by-step guidance.
                     </div>
                   </div>
                 </div>
@@ -475,12 +470,12 @@ export default function LandingPage() {
                       type="button"
                       onClick={() => toggleAccordion(3)}
                     >
-                      What kind of support do you offer?
+                      How much does this cost? Are there pricing tiers?
                     </button>
                   </h2>
                   <div className={`accordion-collapse collapse ${activeAccordion === 3 ? 'show' : ''}`}>
                     <div className="accordion-body bg-light rounded-3 mt-2">
-                      We offer comprehensive support including email, chat, and phone support depending on your plan, plus dedicated account managers for enterprise clients.
+                      We are offering free setup for anyone participating in our initial trial phase. Once the trial phase is complete, it is completely up to you whether you want to continue with us or not. If you feel we have provided value and do wish to continue, we will work with you at that point to determine the best pricing structure for your needs.
                     </div>
                   </div>
                 </div>
@@ -492,12 +487,12 @@ export default function LandingPage() {
                       type="button"
                       onClick={() => toggleAccordion(4)}
                     >
-                      Is my data secure?
+                      Will you offer support throughout the process?
                     </button>
                   </h2>
                   <div className={`accordion-collapse collapse ${activeAccordion === 4 ? 'show' : ''}`}>
                     <div className="accordion-body bg-light rounded-3 mt-2">
-                      Absolutely. We use enterprise-level encryption, secure data centers, and comply with all major security standards to protect your business data.
+                      Absolutely. After initial setup, we will check in periodically to ensure everything is running smoothly. And you are welcome to reach out to us through any of our various support channels if you have any questions or need assistance.
                     </div>
                   </div>
                 </div>
