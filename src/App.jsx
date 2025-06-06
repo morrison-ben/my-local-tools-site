@@ -122,7 +122,7 @@ export default function LandingPage() {
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#benefits">Benefits</a></li>
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#product">Product</a></li>
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#process">Process</a></li>
-              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#pricing">Pricing</a></li>
+              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#faq">FAQ</a></li>
             </ul>
             <button className="btn btn-brand-primary btn-lg px-4">Book a call</button>
           </div>
@@ -345,7 +345,7 @@ export default function LandingPage() {
                 <h5 className="fw-bold mb-3">Discover</h5>
                 <ul className="list-unstyled text-muted small">
                   <li className="mb-2">• One-on-one consultation</li>
-                  <li className="mb-2">• Prioritize learning over selling</li>
+                  <li className="mb-2">• This is about learning, not selling</li>
                   <li className="mb-2">• Find out what’s slowing you down the most </li>
                 </ul>
               </div>
@@ -358,8 +358,8 @@ export default function LandingPage() {
                 <h5 className="fw-bold mb-3">Plan</h5>
                 <ul className="list-unstyled text-muted small">
                   <li className="mb-2">• Prioritize simple wins</li>
-                  <li className="mb-2">• Align on vision going forward</li>
                   <li className="mb-2">• Fine tune / make adjustments where needed </li>
+                  <li className="mb-2">• Align on vision going forward</li>
                 </ul>
               </div>
             </div>
@@ -371,8 +371,8 @@ export default function LandingPage() {
                 <h5 className="fw-bold mb-3">Build</h5>
                 <ul className="list-unstyled text-muted small">
                   <li className="mb-2">• MVP to address your biggest pain point</li>
+                  <li className="mb-2">• Regular updates from our end as we build</li>
                   <li className="mb-2">• Minimal learning curve / ramp-up</li>
-                  <li className="mb-2">• Regular updates on progress and changes</li>
                 </ul>
               </div>
             </div>
@@ -385,7 +385,7 @@ export default function LandingPage() {
                 <ul className="list-unstyled text-muted small">
                   <li className="mb-2">• Ongoing feedback sessions</li>
                   <li className="mb-2">• Easy-to-use dashboard for metric tracking</li>
-                  <li className="mb-2">• Freedom to upgrade or add automations</li>
+                  <li className="mb-2">• Add more automations as needed</li>
                 </ul>
               </div>
             </div>
@@ -400,7 +400,7 @@ export default function LandingPage() {
 
 
       {/* FAQ Section */}
-      <section className="py-5">
+      <section className="py-5" id="faq">
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold mb-3 text-brand-resin brand-heading">Got a quick question?</h2>
@@ -503,62 +503,38 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-dark text-white py-5">
+      <footer className="bg-dark text-white py-4">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="mb-4">
+          <div className="row align-items-center">
+            <div className="col-lg-4">
+              <div className="mb-3 mb-lg-0">
                 <a className="navbar-brand fw-bold fs-4 text-brand-gold text-decoration-none brand-heading d-flex align-items-center" href="#">
                   <img src={ceranaLogo} alt="Cerana Logo" style={{height: '32px', marginRight: '8px'}} />
                   Cerana
                 </a>
-              </div>
-              <h4 className="fw-bold mb-3 text-white">Start Saving Time and Streamlining Your Business Today.</h4>
-              <p className="text-light opacity-75 mb-4">
-                Experience the power of automated efficiency and optimized operations. Get started now to reclaim your time and focus on what matters most.
-              </p>
-              <button className="btn btn-brand-primary btn-lg px-4">Get Started</button>
-            </div>
-            <div className="col-lg-6">
-              <div className="row">
-                <div className="col-md-6">
-                  <h6 className="fw-bold mb-3">Quick Links</h6>
-                  <ul className="list-unstyled">
-                    <li className="mb-2"><a href="#product" className="text-light opacity-75 text-decoration-none">Product</a></li>
-                    <li className="mb-2"><a href="#benefits" className="text-light opacity-75 text-decoration-none">Benefits</a></li>
-                    <li className="mb-2"><a href="#reviews" className="text-light opacity-75 text-decoration-none">Reviews</a></li>
-                    <li className="mb-2"><a href="#pricing" className="text-light opacity-75 text-decoration-none">Pricing</a></li>
-                  </ul>
-                </div>
-                <div className="col-md-6">
-                  <h6 className="fw-bold mb-3">Follow Us</h6>
-                  <div className="d-flex gap-3">
-                    <a href="#" className="text-light opacity-75 text-decoration-none">
-                      <span className="fs-5">📘</span>
-                    </a>
-                    <a href="#" className="text-light opacity-75 text-decoration-none">
-                      <span className="fs-5">🐦</span>
-                    </a>
-                    <a href="#" className="text-light opacity-75 text-decoration-none">
-                      <span className="fs-5">💼</span>
-                    </a>
-                    <a href="#" className="text-light opacity-75 text-decoration-none">
-                      <span className="fs-5">📺</span>
-                    </a>
-                  </div>
-                </div>
+                <p className="text-light opacity-75 mb-0 mt-2 small">
+                  Streamlining business automation for local companies.
+                </p>
               </div>
             </div>
-          </div>
-          <hr className="my-4 opacity-25" />
-          <div className="row align-items-center">
-            <div className="col-md-6">
-              <p className="small opacity-75 mb-0">© 2025 Cerana</p>
+            <div className="col-lg-4">
+              <div className="mb-3 mb-lg-0">
+                <h6 className="fw-bold mb-3 text-center">Quick Links</h6>
+                <ul className="list-unstyled d-flex justify-content-center gap-4 mb-0">
+                <li><a href="#benefits" className="text-light opacity-75 text-decoration-none small">Benefits</a></li>
+                  <li><a href="#product" className="text-light opacity-75 text-decoration-none small">Product</a></li>
+                  <li><a href="#process" className="text-light opacity-75 text-decoration-none small">Process</a></li>
+                  <li><a href="#faq" className="text-light opacity-75 text-decoration-none small">FAQ</a></li>
+                </ul>
+              </div>
             </div>
-            <div className="col-md-6 text-md-end">
-              <p className="small opacity-75 mb-0">
-                Made with ❤️ for local businesses
-              </p>
+            <div className="col-lg-4">
+              <div className="text-lg-end">
+                <p className="small opacity-75 mb-1">© 2025 Cerana</p>
+                <p className="small opacity-75 mb-0">
+                  Made with ❤️ for local businesses
+                </p>
+              </div>
             </div>
           </div>
         </div>
