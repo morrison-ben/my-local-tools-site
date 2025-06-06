@@ -143,6 +143,12 @@ html {
 }
 
 /* Custom spacing utilities */
+
+.py-5 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+
 .py-6 {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -199,11 +205,29 @@ html {
 .form-control.is-invalid {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+  background-color: white !important;
 }
 
 .form-control:focus {
-  border-color: var(--brand-clay-orange);
+  border-color: var(--brand-garden-green);
   box-shadow: 0 0 0 0.2rem rgba(180, 98, 51, 0.25);
+  background-color: white !important;
+}
+
+.form-control:focus-visible {
+  border-color: var(--brand-garden-green);
+  box-shadow: 0 0 0 0.2rem rgba(180, 98, 51, 0.25);
+  background-color: white !important;
+  outline: none;
+}
+
+.form-control {
+  background-color: white !important;
+  color: var(--brand-dark-resin) !important;
+}
+
+.form-control::placeholder {
+  color: #6c757d !important;
 }
 
 .btn:disabled {
@@ -214,6 +238,62 @@ html {
 .spinner-border-sm {
   width: 1rem;
   height: 1rem;
+}
+
+/* Feedback text styling */
+.waitlist-feedback {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.waitlist-feedback.text-danger {
+  color: #dc3545 !important;
+}
+
+.waitlist-feedback.text-success {
+  color: #198754 !important;
+}
+
+/* Bootstrap input-group fixes to remove gray lines */
+.input-group {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input-group > .form-control {
+  border-right: none !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.input-group > .btn {
+  border-left: none !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* Remove any pseudo-elements that might create lines */
+.input-group::before,
+.input-group::after,
+.form-control::before,
+.form-control::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Remove input-group text decorations */
+.input-group-text {
+  border: none !important;
+  background: none !important;
+}
+
+/* Additional email input specific fixes */
+input[type="email"].form-control {
+  background-image: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 /* Scroll Animation Base Classes */

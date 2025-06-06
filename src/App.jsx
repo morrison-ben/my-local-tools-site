@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import storefrontImage from './assets/storefront_no_bg.png';
-import ceranaLogo from './assets/cerana_logo.png';
+import ceranaLogo from './assets/another_logo_no_bg.png';
 import ceranaCoolPic from './assets/cerana_cool_pic.png';
 
 export default function LandingPage() {
@@ -51,7 +51,7 @@ export default function LandingPage() {
       console.log('Submitting email:', email);
 
       // Try fetch first
-      const response = await fetch('https://script.google.com/macros/s/AKfycbztn0b8x6vQKy4Xv5xN5PPO4NKddmgwdzh78xClpyJXNQS6QtsEO7xCEktxUxTtpxPw4A/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzAOnulCx54IvCvMHkuPiPvP147z4BZbxfqEfkK6iOdvmRbc896tOZlIhr918ZrKsy6pQ/exec', {
         redirect: "follow",
         method: 'POST',
         headers: {
@@ -103,40 +103,7 @@ export default function LandingPage() {
     }
   };
 
-  // Scroll Animation Setup
-  useEffect(() => {
-    // Configure the Intersection Observer
-    const observerOptions = {
-      root: null, // Use viewport as root
-      rootMargin: '0px', // No margin
-      threshold: 0.15 // Trigger when 15% of element is visible
-    };
 
-    // Create observer instance
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Add active class when element is visible
-          entry.target.classList.add('animate-active');
-          // Optionally unobserve after animation is triggered
-          // observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    // Select all elements with animation classes
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-
-    // Add a small delay before starting to observe elements
-    setTimeout(() => {
-      animatedElements.forEach(el => observer.observe(el));
-    }, 100);
-
-    // Clean up observer on component unmount
-    return () => {
-      animatedElements.forEach(el => observer.unobserve(el));
-    };
-  }, []);
 
   return (
     <div className="brand-bg-gradient text-dark">
@@ -152,19 +119,19 @@ export default function LandingPage() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
-              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#product">Product</a></li>
-              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#reviews">Reviews</a></li>
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#benefits">Benefits</a></li>
+              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#product">Product</a></li>
+              <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#process">Process</a></li>
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#pricing">Pricing</a></li>
             </ul>
-            <button className="btn btn-brand-primary btn-lg px-4">Get Started</button>
+            <button className="btn btn-brand-primary btn-lg px-4">Book a call</button>
           </div>
         </div>
       </nav>
 
       {/* Hero */}
-      <header className="py-5 animate-on-scroll fade-in">
-        <div className="container">
+      <header>
+        <div className="container py-5">
           <div className="row align-items-center g-5" style={{minHeight: '75vh'}}>
             <div className="col-lg-6 pe-lg-4">
               <div className="mb-3">
@@ -201,11 +168,11 @@ export default function LandingPage() {
                 </div>
 
                 {submitStatus === 'error' && (
-                  <div className="text-danger small">{errorMessage}</div>
+                  <div className="waitlist-feedback text-danger">{errorMessage}</div>
                 )}
 
                 {submitStatus === 'success' && (
-                  <div className="text-success small">Thank you! You've been added to our waitlist.</div>
+                  <div className="waitlist-feedback text-success">Thank you! You've been added to our waitlist.</div>
                 )}
               </form>
             </div>
@@ -223,80 +190,38 @@ export default function LandingPage() {
         </div>
       </header>
 
-      {/* Product Showcase Section */}
-      <section className="py-5 animate-on-scroll slide-in-left" style={{
-        minHeight: '600px'
-      }}>
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-lg-6">
-              <div className="text-white">
-                <h2 className="display-4 fw-bold mb-4 text-brand-resin">
-                  Automate workflows <span className="text-brand-gold">mindfully</span>
-                </h2>
-                <p className="lead text-brand-resin opacity-75 mb-4">
-                  We help you streamline repetitive tasks in a way that works for your business.
-                </p>
-                <p className="text-brand-resin opacity-75 mb-4">
-                  It all starts with a one on one consultation, where we learn about your business, the challenges you face, and the toolset you currently use. From there, we can pick and choose the tools and workflows that fit your use case perfectly.
-                </p>
-                <div className="d-flex flex-column gap-4 mb-4 align-items-start">
-                  <button className="btn btn-brand-primary btn-lg px-4 py-3 align-self-start" style={{width: "90%"}}>
-                    Book a Call
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="text-center">
-                <img
-                  src={ceranaCoolPic}
-                  alt="Cerana Automation Platform"
-                  className="img-fluid"
-                  style={{
-                    maxHeight: '500px',
-                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
-                    transform: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)'
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-5 animate-on-scroll slide-in-up" id="benefits">
+      {/* The Cerana Difference */}
+      <section className="py-5" id="benefits">
         <div className="container">
           <div className="text-center mb-5">
-            <h2 className="text-brand-resin text-uppercase display-5 fw-bold mb-3 brand-heading">The Cerana Difference</h2>
+            <h2 className="text-brand-resin display-5 fw-bold mb-3 brand-heading">The Cerana Difference</h2>
           </div>
-          
+
           <div className="row g-4">
-            <div className="col-lg-4 animate-on-scroll slide-in-up delay-100">
+            <div className="col-lg-4">
               <div className="text-center h-100">
-                <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
-                  <span className="fs-2">⏱</span>
+                <div className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
+                  <span className="fs-1">⏱</span>
                 </div>
-                <h4 className="fw-bold mb-3 brand-heading">Take Back Your Time</h4>
+                <h4 className="fw-bold mb-3 brand-heading text-brand-orange">Take Back Your Time</h4>
                 <p className="brand-body">Automate your time-consuming tasks and free up work hours for you and your employees.</p>
               </div>
             </div>
-            <div className="col-lg-4 animate-on-scroll slide-in-up delay-300">
+            <div className="col-lg-4">
               <div className="text-center h-100">
-                <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
-                  <span className="fs-2">➡</span>
+                <div className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
+                  <span className="fs-1">➡</span>
                 </div>
-                <h4 className="fw-bold mb-3 brand-heading">Seamless Transition</h4>
+                <h4 className="fw-bold mb-3 brand-heading text-brand-orange">Seamless Transition</h4>
                 <p className="brand-body">Quiet and smooth integrations that co-exist with your current system. No need to reinvent the wheel.</p>
               </div>
             </div>
-            <div className="col-lg-4 animate-on-scroll slide-in-up delay-500">
+            <div className="col-lg-4">
               <div className="text-center h-100">
-                <div className="bg-brand-gold bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
-                  <span className="fs-2">⚡</span>
+                <div className="rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '80px', height: '80px'}}>
+                  <span className="fs-1">⚡</span>
                 </div>
-                <h4 className="fw-bold mb-3 brand-heading">Speed is everything</h4>
+                <h4 className="fw-bold mb-3 brand-heading text-brand-orange">Speed is everything</h4>
                 <p className="brand-body">Onboarding with us is lightning fast - we want you to use our tools and reap the benefits as soon as possible.</p>
               </div>
             </div>
@@ -363,19 +288,60 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Product Showcase Section */}
+      <section className="py-5" id="product" style={{
+        minHeight: '600px'
+      }}>
+        <div className="container py-5">
+          <div className="row align-items-center">
+            <div className="col-lg-6">
+              <div className="text-white">
+                <h2 className="display-4 fw-bold mb-4 text-brand-resin">
+                  Automate workflows <span className="text-brand-gold">mindfully</span>
+                </h2>
+                <p className="lead text-brand-resin opacity-75 mb-4">
+                  We help you streamline repetitive tasks in a way that works for your business.
+                </p>
+                <p className="text-brand-resin opacity-75 mb-4">
+                  It all starts with a one on one consultation, where we learn about your business, the challenges you face, and the toolset you currently use. From there, we can pick and choose the tools and workflows that fit your use case perfectly.
+                </p>
+                <div className="d-flex flex-column gap-4 mb-4 align-items-start">
+                  <button className="btn btn-brand-primary btn-lg px-4 py-3 align-self-start" style={{width: "90%"}}>
+                    Book a Call
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="text-center">
+                <img
+                  src={ceranaCoolPic}
+                  alt="Cerana Automation Platform"
+                  className="img-fluid"
+                  style={{
+                    maxHeight: '500px',
+                    filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))',
+                    transform: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)'
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
-      <section className="py-5 animate-on-scroll slide-in-right" id="process">
+      <section className="py-5" id="process">
         <div className="container">
           <div className="text-center mb-5">
-            <p className="text-success text-uppercase fw-bold small mb-2">PROCESS</p>
-            <h2 className="display-5 fw-bold mb-3">Our Approach</h2>
+            <h2 className="display-5 fw-bold mb-3 text-brand-resin">Our Approach</h2>
             <p className="lead text-muted">
               Our streamlined process ensures quick, efficient results, from setup to completion. Enjoy clear steps and full transparency at every stage.
             </p>
           </div>
 
           <div className="row g-4">
-            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-100">
+            <div className="col-md-6 col-lg-3">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">01</span>
@@ -388,7 +354,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-200">
+            <div className="col-md-6 col-lg-3">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">02</span>
@@ -401,7 +367,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-300">
+            <div className="col-md-6 col-lg-3">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">03</span>
@@ -414,7 +380,7 @@ export default function LandingPage() {
                 </ul>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 animate-on-scroll slide-in-up delay-400">
+            <div className="col-md-6 col-lg-3">
               <div className="text-center">
                 <div className="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{width: '60px', height: '60px'}}>
                   <span className="fw-bold">04</span>
@@ -438,7 +404,7 @@ export default function LandingPage() {
 
 
       {/* FAQ Section */}
-      <section className="py-5 animate-on-scroll fade-in">
+      <section className="py-5">
         <div className="container">
           <div className="text-center mb-5">
             <p className="text-success text-uppercase fw-bold small mb-2">FAQ'S</p>
@@ -541,32 +507,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-5 animate-on-scroll slide-in-up" style={{background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)'}}>
-        <div className="container">
-          <div className="text-center">
-            <p className="text-success text-uppercase fw-bold small mb-2">KEY TAKEAWAYS</p>
-            <h2 className="display-5 fw-bold mb-4">Get Your Time Back with Smart Automation</h2>
-            <p className="lead text-muted mb-4">
-              Reclaim hours each week with smart automation that handles repetitive tasks seamlessly, giving you time to focus on what truly matters.
-            </p>
-
-
-            <div className="row justify-content-center mt-4">
-              <div className="col-md-8">
-                <div className="row g-3 small text-muted">
-                  <div className="col-md-6">• Reclaim Hours Each Week for What Matters</div>
-                  <div className="col-md-6">• Zero Learning Curve, Instant Implementation</div>
-                  <div className="col-md-6">• Seamless Integration with Current Tools</div>
-                  <div className="col-md-6">• Background Automation, No Disruption</div>
-                  <div className="col-md-12">• Focus on Growing Your Business, Not Managing Tasks</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-dark text-white py-5">
         <div className="container">
@@ -618,7 +558,7 @@ export default function LandingPage() {
           <hr className="my-4 opacity-25" />
           <div className="row align-items-center">
             <div className="col-md-6">
-              <p className="small opacity-75 mb-0">© 2024 Simple Fix Template</p>
+              <p className="small opacity-75 mb-0">© 2025 Cerana</p>
             </div>
             <div className="col-md-6 text-md-end">
               <p className="small opacity-75 mb-0">
