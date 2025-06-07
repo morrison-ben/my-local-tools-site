@@ -124,7 +124,7 @@ export default function LandingPage() {
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#process">Process</a></li>
               <li className="nav-item"><a className="nav-link fw-medium brand-body" href="#faq">FAQ</a></li>
             </ul>
-            <button className="btn btn-brand-primary btn-lg px-4">Book a call</button>
+            <a href="https://calendly.com/morrisonb84/30min" className="btn btn-brand-primary btn-lg px-4" target="_blank" rel="noopener noreferrer">Book a call</a>
           </div>
         </div>
       </nav>
@@ -306,9 +306,9 @@ export default function LandingPage() {
                   It all starts with a one on one consultation, where we learn about your business, the challenges you face, and the toolset you currently use. From there, we can pick and choose the tools and workflows that fit your use case perfectly.
                 </p>
                 <div className="d-flex flex-column gap-4 mb-4 align-items-start">
-                  <button className="btn btn-brand-primary btn-lg px-4 py-3 align-self-start" style={{width: "90%"}}>
+                  <a href="https://calendly.com/morrisonb84/30min" className="btn btn-brand-primary btn-lg px-4 py-3 align-self-start" style={{width: "90%"}} target="_blank" rel="noopener noreferrer">
                     Book a Call
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
