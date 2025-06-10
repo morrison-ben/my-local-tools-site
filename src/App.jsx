@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import storefrontImage from './assets/storefront_no_bg.png';
-import ceranaLogo from './assets/another_logo_no_bg.png';
+import ceranaLogo from './assets/logo.png';
 import ceranaCoolPic from './assets/cerana_cool_pic.png';
 
 export default function LandingPage() {
